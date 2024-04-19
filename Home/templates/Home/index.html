@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="2000">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="{% static 'image/b1g2f.jpg' %}" class="d-block w-100" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'image/offer.png' %}" class="d-block w-100" alt="Second slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{% static 'image/welcome.jpg' %}" class="d-block w-100" alt="Third slide">
+                    </div>
+                </div>
+            </div>
+            <div class="jumbotron text-center">
+                <h1 class="display-4 font-weight-bold">Welcome to Appu Chatpat Pasal</h1>
+                <p class="lead">Discover our amazing collection of Chatpate and panipuri.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Items</h2>
+            <div class="d-flex flex-row flex-wrap justify-content-start">
+                {% for item in items %}
+                <a href="#" class="card-link" style="text-decoration: none; color: black;">
+                    <div class="card m-3 custom-card" style="width: 18rem;">
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}" width="70px" class="img-fluid" style="max-height: 200px;">
+                        {% else %}
+                        <img src="#" alt="{{ item.name }}" height="200vh" style="object-fit: contain;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.name }}</h5>
+                            <p class="card-text">Price: {{ item.price }} Rs</p>
+                            <p class="card-text">{{ item.description }}</p>
+                            <a href="#" class="btn btn-primary">Order Now</a>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel();
+    });
+</script>
+{% endblock %}
